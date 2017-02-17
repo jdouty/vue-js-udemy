@@ -2,26 +2,31 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>First Vue App</title>
+    <title>Second Vue App</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://unpkg.com/vue@2.1.10/dist/vue.js"></script>
 </head>
 <body>
     <div id="app">
-        <input type="text" name="" value="" v-on:input="changeTitle">
-        <p>{{ title }}</p>
+        <h1 v-once>{{ title }}</h1>
+        <p>{{ sayHello() }} - <a v-bind:href="link">Google</a></p>
+        <hr>
+        <p v-html="finishedLink"></p>
     </div>
     
     <script>
         new Vue({
             el: '#app',
             data: {
-                title: 'Hello, World!'
+                title: 'Hello, World!',
+                link: 'https://google.com',
+                finishedLink: '<a href="https://google.com">Google!</a>'
             },
             methods: {
-                changeTitle: function(event) {
-                    this.title = event.target.value;
+                sayHello: function() {
+                    this.title = 'Hello!';
+                    return this.title;
                 }
             }
         });
