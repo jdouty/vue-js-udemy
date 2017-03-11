@@ -32,32 +32,30 @@
 </head>
 <body>
     <div id="app">
-        <div class="demo" v-on:click="attachRed = !attachRed" v-bind:class="divClasses">  
-        </div>
+        <div class="demo" v-bind:style="{'background-color':color}"></div>
 
-        <div class="demo" v-bind:class="{red: attachRed}">
-        </div>
+        <div class="demo" v-bind:style="myStyle"></div>
 
-        <div class="demo" v-bind:class="[color, {red: attachRed}]">
-        </div>
+        <div class="demo" v-bind:style="[myStyle, {height: width + 'px'}]"></div>
 
         <hr>
 
-        <input type="text" v-model="color"> 
+        <input type="text" v-model="color">
+        <input type="text" v-model="width">
     </div>
     
     <script>
         new Vue({
             el: '#app',
             data: {
-                attachRed: false,
-                color: 'green'
+                color: 'gray',
+                width: 100
             },
             computed: {
-                divClasses: function() {
+                myStyle: function() {
                     return {
-                        red: this.attachRed,
-                        blue: !this.attachRed
+                        'background-color': this.color,
+                        width: this.width + 'px'
                     };
                 }
             }
